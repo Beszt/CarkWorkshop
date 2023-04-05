@@ -1,0 +1,10 @@
+namespace CarWorkshop.MVC.Models;
+
+public class About
+{
+    public string? Tittle { get; set; }
+
+    public string? Description { get; set; }
+
+    public List<string> Tags { get; set; } = new();
+}
