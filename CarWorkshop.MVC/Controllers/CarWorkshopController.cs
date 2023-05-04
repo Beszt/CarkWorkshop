@@ -11,10 +11,15 @@ public class CarWorkshopController : Controller
         _carWorkshopService = carWokrshopService;
     }
 
+    public ActionResult Create()
+    {
+        return View();
+    }
+
     [HttpPost]
     public async Task<IActionResult> Create(Domain.Entities.CarWorkshop carWorkshop)
     {
         await _carWorkshopService.Create(carWorkshop);
-        return Ok(carWorkshop);
+        return View();
     }
 }
