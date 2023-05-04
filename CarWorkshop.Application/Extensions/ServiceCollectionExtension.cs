@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using CarWorkshop.Application.Mappings;
 using CarWorkshop.Application.Services;
 
 namespace CarWorkshop.Application.Extensions
@@ -8,6 +9,8 @@ namespace CarWorkshop.Application.Extensions
         public static void AddAppllication(this IServiceCollection services)
         {
             services.AddScoped<ICarWokrshopService, CarWokrshopService>();
+
+            services.AddAutoMapper(typeof(CarWorkshopMappingProfile));
         }
     }
 }
