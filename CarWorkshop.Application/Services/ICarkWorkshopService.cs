@@ -1,9 +1,8 @@
 using CarWorkshop.Application.CarWorkshop;
 
-namespace CarWorkshop.Application.Services
+namespace CarWorkshop.Application.Services;
+
+public interface ICarWokrshopService
 {
-    public interface ICarWokrshopService
-    {
-        Task Create(CarWorkshopDto carWorkshop);
-    }
+    Task Create(CarWorkshopDto carWorkshop);
 }

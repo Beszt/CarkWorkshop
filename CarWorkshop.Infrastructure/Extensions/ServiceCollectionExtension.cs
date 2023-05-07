@@ -1,23 +1,22 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using CarWorkshop.Domain.Interfaces;
 using CarWorkshop.Infrastructure.Persistence;
 using CarWorkshop.Infrastructure.Repositories;
 using CarWorkshop.Infrastructure.Seeders;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace CarWorkshop.Infrastructure.Extensions
+namespace CarWorkshop.Infrastructure.Extensions;
+
+public static class ServiceCollectionExtension
 {
-    public static class ServiceCollectionExtension
+    public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
-        public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
-        {
-            services.AddDbContext<CarWorkshopDbContext>(options => options.UseNpgsql(
-                configuration.GetConnectionString("CarWorkshop")
-            ));
+        services.AddDbContext<CarWorkshopDbContext>(options => options.UseNpgsql(
+            configuration.GetConnectionString("CarWorkshop")
+        ));
 
-            services.AddScoped<CarWorkShopSeeder>();
-            services.AddScoped<ICarWorkshopRepository, CarWorkshopRepository>();
-        }
+        services.AddScoped<CarWorkShopSeeder>();
+        services.AddScoped<ICarWorkshopRepository, CarWorkshopRepository>();
     }
 }
