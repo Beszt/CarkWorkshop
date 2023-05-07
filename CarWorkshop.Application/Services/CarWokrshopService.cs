@@ -15,6 +15,14 @@ public class CarWokrshopService : ICarWokrshopService
         _mapper = mapper;
     }
 
+    public async Task<IEnumerable<CarWorkshopDto>> GetAll()
+    {
+        var carWorkshops = await _carWorkshopRepository.GetAll();
+        var dtos = _mapper.Map<IEnumerable<CarWorkshopDto>>(carWorkshops);
+        
+        return dtos;
+    }
+
     public async Task Create(CarWorkshopDto carWorkshopDto)
     {
         var carWorkshop = _mapper.Map<Domain.Entities.CarWorkshop>(carWorkshopDto);
