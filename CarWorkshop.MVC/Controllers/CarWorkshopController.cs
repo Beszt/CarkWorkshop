@@ -1,20 +1,21 @@
+using CarWorkshop.Application.CarWorkshop.Commands;
+using CarWorkshop.Application.CarWorkshop.Queries;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using CarWorkshop.Application.Services;
-using CarWorkshop.Application.CarWorkshop;
 
 namespace CarWorkshop.MVC.Controllers;
 
 public class CarWorkshopController : Controller
 {
-    private readonly ICarWokrshopService _carWorkshopService;
-    public CarWorkshopController(ICarWokrshopService carWokrshopService)
+    private readonly IMediator _mediator;
+    public CarWorkshopController(IMediator mediator)
     {
-        _carWorkshopService = carWokrshopService;
+        _mediator = mediator;
     }
 
     public async Task<IActionResult> Index()
     {
-        var carWorkshops = await _carWorkshopService.GetAll();
+        var carWorkshops = await _mediator.Send(new GetAllCarWorkshopsQuery());
         return View(carWorkshops);
     }
 
@@ -24,14 +25,14 @@ public class CarWorkshopController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create(CarWorkshopDto carWorkshop)
+    public async Task<IActionResult> Create(CreateCarWorkshopCommand command)
     {
         if (!ModelState.IsValid)
         {
-            return View(carWorkshop);
+            return View(command);
         }
 
-        await _carWorkshopService.Create(carWorkshop);
+        await _mediator.Send(command);
         return RedirectToAction(nameof(Index));
     }
 }
