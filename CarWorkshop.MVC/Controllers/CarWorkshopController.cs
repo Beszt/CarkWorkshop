@@ -35,4 +35,11 @@ public class CarWorkshopController : Controller
         await _mediator.Send(command);
         return RedirectToAction(nameof(Index));
     }
+
+    [Route("CarWorkshop/{encodedName}/Details")]
+    public async Task<ActionResult> Details(string encodedName)
+    {
+        var dto = await _mediator.Send(new GetCarWorkshopByEncodedNameQuery(encodedName));
+        return View(dto);
+    }
 }
