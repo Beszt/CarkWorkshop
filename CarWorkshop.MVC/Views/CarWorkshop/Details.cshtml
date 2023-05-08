@@ -5,7 +5,7 @@
 }
 
 <h1>@ViewData["Title"]</h1>
-
+<hr />
 <div>
     <dl class="row">
         <dt class="col-sm-2">
@@ -49,6 +49,6 @@
     </dl>
 </div>
 <div>
-    <a href="#" class="btn btn-primary">Edit</a>
+<a class="btn btn-primary" asp-controller="CarWorkshop" asp-action="Edit" asp-route-encodedName=@Model.EncodedName>Edit</a>
     <a asp-action="Index" class="btn btn-outline-secondary">Back to list</a>
 </div>

@@ -6,5 +6,6 @@ public interface ICarWorkshopRepository
     Task<IEnumerable<Domain.Entities.CarWorkshop>> GetAll();
     Task<Domain.Entities.CarWorkshop?> GetByEncodedName(string encodedName);
     Task<Domain.Entities.CarWorkshop?> GetByName(string name);
+    Task Update(Domain.Entities.CarWorkshop carWorkshop);
 
 }

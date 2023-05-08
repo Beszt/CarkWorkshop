@@ -18,5 +18,9 @@ public static class ServiceCollectionExtension
         services.AddValidatorsFromAssemblyContaining<CreateCarWorkshopCommandValidator>()
             .AddFluentValidationAutoValidation()
             .AddFluentValidationClientsideAdapters();
+
+        services.AddValidatorsFromAssemblyContaining<UpdateCarWorkshopCommandValidator>()
+            .AddFluentValidationAutoValidation()
+            .AddFluentValidationClientsideAdapters();
     }
 }

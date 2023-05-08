@@ -27,4 +27,20 @@ public class CarWorkshopRepository : ICarWorkshopRepository
 
     public async Task<Domain.Entities.CarWorkshop?> GetByName(string name)
         => await _dbContext.CarWorkshops.FirstOrDefaultAsync(cw => cw.Name.ToLower() == name.ToLower());
+
+    public async Task Update(Domain.Entities.CarWorkshop carWorkshop)
+    {
+        var cw = _dbContext.CarWorkshops.FirstOrDefault(cw => cw.Name.ToLower() == carWorkshop.Name.ToLower());
+        
+        if (cw != null)
+        {
+            cw.Description = carWorkshop.Description;
+            cw.ContactDetails.PhoneNumber = carWorkshop.ContactDetails.PhoneNumber;
+            cw.ContactDetails.City = carWorkshop.ContactDetails.City;
+            cw.ContactDetails.Street = carWorkshop.ContactDetails.Street;
+            cw.ContactDetails.PostalCode = carWorkshop.ContactDetails.PostalCode;
+
+            await _dbContext.SaveChangesAsync();
+        }
+    }
 }
