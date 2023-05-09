@@ -1,5 +1,6 @@
 using AutoMapper;
 using CarWorkshop.Application.CarWorkshop;
+using CarWorkshop.Application.CarWorkshop.Commands;
 using CarWorkshop.Domain.Entities;
 
 namespace CarWorkshop.Application.Mappings;
@@ -23,5 +24,6 @@ public class CarWorkshopMappingProfile : Profile
             .ForMember(dto => dto.PostalCode, obj => obj.MapFrom(src => src.ContactDetails.PostalCode))
             .ForMember(dto => dto.Street, obj => obj.MapFrom(src => src.ContactDetails.Street));
 
+        CreateMap<CarWorkshopDto, UpdateCarWorkshopCommand>();
     }
 }

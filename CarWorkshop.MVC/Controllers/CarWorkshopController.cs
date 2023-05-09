@@ -1,3 +1,4 @@
+using AutoMapper;
 using CarWorkshop.Application.CarWorkshop.Commands;
 using CarWorkshop.Application.CarWorkshop.Queries;
 using MediatR;
@@ -7,9 +8,12 @@ namespace CarWorkshop.MVC.Controllers;
 
 public class CarWorkshopController : Controller
 {
+    private readonly IMapper _mapper;
     private readonly IMediator _mediator;
-    public CarWorkshopController(IMediator mediator)
+    
+    public CarWorkshopController(IMediator mediator, IMapper mapper)
     {
+        _mapper = mapper;
         _mediator = mediator;
     }
 
@@ -47,26 +51,18 @@ public class CarWorkshopController : Controller
     public async Task<ActionResult> Edit(string encodedName)
     {
         var dto = await _mediator.Send(new GetCarWorkshopByEncodedNameQuery(encodedName));
-        
-        var command = new UpdateCarWorkshopCommand() {
-            Name = dto.Name,
-            EncodedName = dto.EncodedName,
-            Description = dto.Description,
-            PhoneNumber = dto.PhoneNumber,
-            City = dto.City,
-            Street = dto.Street,
-            PostalCode = dto.PostalCode
-        };
+        var command = _mapper.Map<UpdateCarWorkshopCommand>(dto);
 
         return View(command);
     }
 
     [HttpPost]
+    [Route("CarWorkshop/{encodedName}/Edit")]
     public async Task<IActionResult> Edit(UpdateCarWorkshopCommand command)
     {
         if (!ModelState.IsValid)
         {
-            return RedirectToAction(nameof(Index), nameof(CarWorkshopController), command.EncodedName);
+            return View(command);
         }
 
         await _mediator.Send(command);
