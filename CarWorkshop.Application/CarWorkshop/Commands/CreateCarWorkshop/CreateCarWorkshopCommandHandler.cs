@@ -21,9 +21,14 @@ public class CreateCarWorkshopCommandHandler : IRequestHandler<CreateCarWorkshop
 
     public async Task<Unit> Handle(CreateCarWorkshopCommand request, CancellationToken cancellationToken)
     {
+        var user = _userContext.GetCurrentUser();
+
+        if (user == null)
+            return Unit.Value;
+
         var carWorkshop = _mapper.Map<Domain.Entities.CarWorkshop>(request);
         carWorkshop.EncodeName();
-        carWorkshop.CreatedById = _userContext.GetCurrentUser().Id;
+        carWorkshop.CreatedById = user.Id;
 
         await _carWorkshopRepository.Create(carWorkshop);
 
