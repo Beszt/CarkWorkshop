@@ -1,5 +1,6 @@
 using CarWorkshop.Application.CarWorkshop.Commands;
 using CarWorkshop.Application.Mappings;
+using CarWorkshop.Application.ApplicationUser;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using MediatR;
@@ -11,6 +12,8 @@ public static class ServiceCollectionExtension
 {
     public static void AddAppllication(this IServiceCollection services)
     {
+        services.AddScoped<IUserContext, UserContext>();
+
         services.AddMediatR(typeof(CreateCarWorkshopCommand));
 
         services.AddAutoMapper(typeof(CarWorkshopMappingProfile));

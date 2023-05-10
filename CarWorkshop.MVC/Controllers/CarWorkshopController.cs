@@ -3,6 +3,7 @@ using CarWorkshop.Application.CarWorkshop.Commands;
 using CarWorkshop.Application.CarWorkshop.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CarWorkshop.MVC.Controllers;
 
@@ -23,12 +24,14 @@ public class CarWorkshopController : Controller
         return View(carWorkshops);
     }
 
+    [Authorize]
     public ActionResult Create()
     {
         return View();
     }
 
     [HttpPost]
+    [Authorize]
     public async Task<IActionResult> Create(CreateCarWorkshopCommand command)
     {
         if (!ModelState.IsValid)
