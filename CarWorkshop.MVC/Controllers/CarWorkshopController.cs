@@ -24,14 +24,14 @@ public class CarWorkshopController : Controller
         return View(carWorkshops);
     }
 
-    [Authorize]
+    [Authorize(Roles = "Admin, User")]
     public ActionResult Create()
     {
         return View();
     }
 
     [HttpPost]
-    [Authorize]
+    [Authorize(Roles = "Admin, User")]
     public async Task<IActionResult> Create(CreateCarWorkshopCommand command)
     {
         if (!ModelState.IsValid)
@@ -43,6 +43,7 @@ public class CarWorkshopController : Controller
         return RedirectToAction(nameof(Index));
     }
 
+    [Authorize(Roles = "Admin, User")]
     [Route("CarWorkshop/{encodedName}/Details")]
     public async Task<ActionResult> Details(string encodedName)
     {
@@ -50,6 +51,7 @@ public class CarWorkshopController : Controller
         return View(dto);
     }
 
+    [Authorize(Roles = "Admin, User")]
     [Route("CarWorkshop/{encodedName}/Edit")]
     public async Task<ActionResult> Edit(string encodedName)
     {
@@ -64,6 +66,7 @@ public class CarWorkshopController : Controller
     }
 
     [HttpPost]
+    [Authorize(Roles = "Admin, User")]
     [Route("CarWorkshop/{encodedName}/Edit")]
     public async Task<IActionResult> Edit(UpdateCarWorkshopCommand command)
     {

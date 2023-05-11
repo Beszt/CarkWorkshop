@@ -23,7 +23,7 @@ public class CreateCarWorkshopCommandHandler : IRequestHandler<CreateCarWorkshop
     {
         var user = _userContext.GetCurrentUser();
 
-        if (user == null)
+        if (user == null || !user.IsInRole("User"))
             return Unit.Value;
 
         var carWorkshop = _mapper.Map<Domain.Entities.CarWorkshop>(request);

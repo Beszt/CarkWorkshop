@@ -22,11 +22,11 @@ public class UpdateCarWorkshopCommandHandler : IRequestHandler<UpdateCarWorkshop
     public async Task<Unit> Handle(UpdateCarWorkshopCommand request, CancellationToken cancellationToken)
     {
         var carWorkshop = await _carWorkshopRepository.GetByEncodedName(request.EncodedName!);
-        
+
         if (carWorkshop != null)
         {
             var user = _userContext.GetCurrentUser();
-            var IsEditable = user != null && carWorkshop.CreatedById == user.Id;
+            var IsEditable = user != null && (carWorkshop.CreatedById == user.Id || user.IsInRole("Admin"));
 
             if (!IsEditable)
                 return Unit.Value;
