@@ -1,6 +1,7 @@
 using AutoMapper;
 using CarWorkshop.Application.CarWorkshop.Commands;
 using CarWorkshop.Application.CarWorkshop.Queries;
+using CarWorkshop.MVC.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
@@ -40,6 +41,9 @@ public class CarWorkshopController : Controller
         }
 
         await _mediator.Send(command);
+
+        this.SetNotification("success", $"Created carworkshop: {command.Name}");
+
         return RedirectToAction(nameof(Index));
     }
 
@@ -76,6 +80,9 @@ public class CarWorkshopController : Controller
         }
 
         await _mediator.Send(command);
+
+        this.SetNotification("info", $"Edited carworkshop: {command.Name}");
+
         return RedirectToAction(nameof(Index));
     }
 }
