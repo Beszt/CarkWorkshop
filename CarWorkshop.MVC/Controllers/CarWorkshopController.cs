@@ -1,6 +1,8 @@
 using AutoMapper;
 using CarWorkshop.Application.CarWorkshop.Commands;
 using CarWorkshop.Application.CarWorkshop.Queries;
+using CarWorkshop.Application.CarWorkshopService.Commands;
+using CarWorkshop.Application.CarWorkshopService.Queries;
 using CarWorkshop.MVC.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -45,6 +47,30 @@ public class CarWorkshopController : Controller
         this.SetNotification("success", $"Created carworkshop: {command.Name}");
 
         return RedirectToAction(nameof(Index));
+    }
+
+    [HttpPost]
+    [Authorize(Roles = "Admin, User")]
+    [Route("CarWorkshop/CarWorkshopService")]
+    public async Task<IActionResult> CreateCarWorkshopService(CreateCarWorkshopServiceCommand command)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        await _mediator.Send(command);
+
+        return Ok();
+    }
+
+    [HttpGet]
+    [Authorize(Roles = "Admin, User")]
+    [Route("CarWorkshop/{encodedName}/CarWorkshopService")]
+    public async Task<IActionResult> CreateCarWorkshopService(string encodedName)
+    {
+        var data = await _mediator.Send(new GetCarWorkshopServicesQuery(encodedName));
+        return Ok(data);
     }
 
     [Authorize(Roles = "Admin, User")]

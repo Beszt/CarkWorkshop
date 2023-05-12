@@ -2,6 +2,7 @@ using AutoMapper;
 using CarWorkshop.Application.ApplicationUser;
 using CarWorkshop.Application.CarWorkshop;
 using CarWorkshop.Application.CarWorkshop.Commands;
+using CarWorkshop.Application.CarWorkshopService;
 using CarWorkshop.Domain.Entities;
 
 namespace CarWorkshop.Application.Mappings;
@@ -32,5 +33,8 @@ public class CarWorkshopMappingProfile : Profile
             .ForMember(dto => dto.IsEditable, obj => obj.MapFrom(src => user != null && (src.CreatedById == user.Id || user.IsInRole("Admin"))));
 
         CreateMap<CarWorkshopDto, UpdateCarWorkshopCommand>();
+
+        CreateMap<CarWorkshopServiceDto, Domain.Entities.CarWorkshopService>()
+            .ReverseMap();
     }
 }

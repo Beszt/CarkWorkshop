@@ -24,5 +24,6 @@ public static class ServiceCollectionExtension
         services.AddScoped<CarWorkShopSeeder>();
 
         services.AddScoped<ICarWorkshopRepository, CarWorkshopRepository>();
+        services.AddScoped<ICarWorkshopServiceRepository, CarWorkshopServiceRepository>();
     }
 }
