@@ -18,6 +18,15 @@ public class CarWorkshopRepository : ICarWorkshopRepository
         _dbContext.Add(carWorkshop);
         await _dbContext.SaveChangesAsync();
     }
+    public async Task Delete(string encodedName)
+    {
+        var carWorkshop = _dbContext.CarWorkshops.FirstOrDefault(cw => cw.EncodedName.ToLower() == encodedName.ToLower());
+        
+        if (carWorkshop != null)
+            _dbContext.Remove(carWorkshop);
+
+        await _dbContext.SaveChangesAsync();
+    }
 
     public async Task<IEnumerable<Domain.Entities.CarWorkshop>> GetAll()
         => await _dbContext.CarWorkshops.ToListAsync();

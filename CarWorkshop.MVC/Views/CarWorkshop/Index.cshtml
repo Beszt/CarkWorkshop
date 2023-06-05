@@ -3,7 +3,7 @@
 @model IEnumerable<CarWorkshopDto>
 
 @{
-    ViewData["Title"] = "Car workshops";
+    ViewData["Title"] = "Workshops list";
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -23,7 +23,8 @@
                 <a class="btn btn-primary" asp-controller="CarWorkshop" asp-action="Details" asp-route-encodedName=@item.EncodedName>Details</a>
                 @if (item.IsEditable)
                 {
-                    <a class="btn btn-outline-secondary" asp-controller="CarWorkshop" asp-action="Edit" asp-route-encodedName=@item.EncodedName>Edit</a>
+                    <a class="btn btn-outline-secondary btn-sm" asp-controller="CarWorkshop" asp-action="Edit" asp-route-encodedName=@item.EncodedName>Edit</a>
+                    <a class="btn btn-danger btn-sm" asp-controller="CarWorkshop" asp-action="Delete" asp-route-encodedName=@item.EncodedName>Delete</a>
                 }
             </div>
         </div>

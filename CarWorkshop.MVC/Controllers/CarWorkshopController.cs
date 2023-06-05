@@ -74,6 +74,22 @@ public class CarWorkshopController : Controller
     }
 
     [Authorize(Roles = "Admin, User")]
+    [Route("CarWorkshop/{encodedName}/Delete")]
+    public async Task<IActionResult> Delete(string encodedName)
+    {
+        var dto = await _mediator.Send(new GetCarWorkshopByEncodedNameQuery(encodedName));
+
+        if (!dto.IsEditable)
+            return RedirectToAction("NoAccess", "Home");
+
+        await _mediator.Send(new DeleteCarWorkshopCommand(encodedName));
+
+        this.SetNotification("info", $"Deleted carworkshop: {encodedName}");
+
+        return RedirectToAction(nameof(Index));
+    }
+
+    [Authorize(Roles = "Admin, User")]
     [Route("CarWorkshop/{encodedName}/Details")]
     public async Task<ActionResult> Details(string encodedName)
     {
