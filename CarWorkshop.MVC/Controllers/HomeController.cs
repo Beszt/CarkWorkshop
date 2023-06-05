@@ -13,24 +13,7 @@ public class HomeController : Controller
         _logger = logger;
     }
 
-    public IActionResult About()
-    {
-        About model = new()
-        {
-            Tittle = "About",
-            Description = "This is a description",
-            Tags = new List<string> { "Tag1", "Tag2", "Tag3" }
-        };
-
-        return View(model);
-    }
-
     public IActionResult Index()
-    {
-        return View();
-    }
-
-    public IActionResult Privacy()
     {
         return View();
     }

@@ -2,6 +2,11 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
+@{
+    var area = ViewContext.RouteData.Values["area"]?.ToString();
+    var page = ViewContext.RouteData.Values["page"]?.ToString();
+}
+
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {
@@ -17,10 +22,10 @@
     else
     {
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+            <a class="nav-link text-dark @(area == "Identity" && page == "/Account/Register" ? "active" : "")" asp-area="Identity" asp-page="/Account/Register">Register</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+            <a class="nav-link text-dark @(area == "Identity" && page == "/Account/Login" ? "active" : "")" asp-area="Identity" asp-page="/Account/Login">Login</a>
         </li>
     }
 </ul>
