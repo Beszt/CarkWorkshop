@@ -18,6 +18,7 @@ Live demo is available here [Car Workshop](http://carworkshop.obisoft.pl).
 - Razor Pages
 - Bootstrap
 - jQuery
+- ToastR
 
 ### Libraries
 - AutoMapper
