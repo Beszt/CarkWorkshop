@@ -9,9 +9,12 @@ Live demo is available here [Car Workshop](http://carworkshop.obisoft.pl).
 - NET 7.0 (C# 11)
 - ASP.NET Core MVC
 - ASP.NET Identity
+- MediatR
+- FluentValidation
 
 ## Database 
 - Entity Framework
+- AutoMapper
 - PostgreSQL
 
 ### Frontend
@@ -20,10 +23,10 @@ Live demo is available here [Car Workshop](http://carworkshop.obisoft.pl).
 - jQuery
 - ToastR
 
-### Libraries
-- AutoMapper
-- FluentValidation
-- MediatR
+### Tests
+- Xunit
+- FluentAssertion
+- Moq
 
 ### Patterns
 - Clean Architecture
