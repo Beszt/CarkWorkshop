@@ -1,8 +1,9 @@
-using Xunit;
-using Moq;
+
 using FluentAssertions;
 using Microsoft.AspNetCore.Http;
+using Moq;
 using System.Security.Claims;
+using Xunit;
 
 namespace CarWorkshop.Application.ApplicationUser.Tests;
 

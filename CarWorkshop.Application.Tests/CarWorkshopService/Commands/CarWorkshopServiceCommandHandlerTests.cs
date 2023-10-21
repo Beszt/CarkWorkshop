@@ -1,10 +1,10 @@
-using MediatR;
-using Moq;
-using Xunit;
 using CarWorkshop.Application.ApplicationUser;
 using CarWorkshop.Application.CarWorkshopService.Commands;
 using CarWorkshop.Domain.Interfaces;
 using FluentAssertions;
+using MediatR;
+using Moq;
+using Xunit;
 
 namespace CarWorkshop.Application.Tests.CarWorkshopService.Commands;
 public class CarWorkshopServiceCommandHandlerTests

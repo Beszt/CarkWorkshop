@@ -1,9 +1,10 @@
-using Xunit;
-using Moq;
-using CarWorkshop.Application.ApplicationUser;
+
 using AutoMapper;
+using CarWorkshop.Application.ApplicationUser;
 using CarWorkshop.Application.CarWorkshop;
 using FluentAssertions;
+using Moq;
+using Xunit;
 
 namespace CarWorkshop.Application.Mappings.Tests;
 

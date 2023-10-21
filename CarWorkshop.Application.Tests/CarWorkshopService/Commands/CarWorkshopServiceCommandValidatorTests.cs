@@ -1,5 +1,5 @@
-using Xunit;
 using FluentValidation.TestHelper;
+using Xunit;
 
 namespace CarWorkshop.Application.CarWorkshopService.Commands.Tests;
 
