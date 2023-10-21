@@ -1,6 +1,5 @@
 using Xunit;
 using FluentAssertions;
-using CarWorkshop.Domain.Entities;
 
 namespace CarWorkshop.Domain.Entities.Tests;
 
@@ -20,7 +19,7 @@ public class CarWorkshopTests
     }
 
     [Fact]
-    public void EncodeName_ShouldThrowException_whenNameIsNull()
+    public void EncodeName_ShouldThrowException_WhenNameIsNull()
     {
         var carWorkshop = new CarWorkshop();
 
