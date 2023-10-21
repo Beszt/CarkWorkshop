@@ -10,14 +10,12 @@ public class CreateCarWorkshopServiceCommandHandler : IRequestHandler<CreateCarW
 {
     private readonly ICarWorkshopRepository _carWorkshopRepository;
     private readonly ICarWorkshopServiceRepository _carWorkshopServiceRepository;
-    private readonly IMapper _mapper;
     private readonly IUserContext _userContext;
 
-    public CreateCarWorkshopServiceCommandHandler(ICarWorkshopRepository carWorkshopRepository, ICarWorkshopServiceRepository carWorkshopServiceRepository, IMapper mapper, IUserContext userContext)
+    public CreateCarWorkshopServiceCommandHandler(ICarWorkshopRepository carWorkshopRepository, ICarWorkshopServiceRepository carWorkshopServiceRepository, IUserContext userContext)
     {
         _carWorkshopRepository = carWorkshopRepository;
         _carWorkshopServiceRepository = carWorkshopServiceRepository;
-        _mapper = mapper;
         _userContext = userContext;
     }
 
