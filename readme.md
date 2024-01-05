@@ -7,7 +7,7 @@ Live demo is available here [Car Workshop](http://carworkshop.obisoft.pl).
 
 ### Backend
 - NET 7.0 (C# 11)
-- ASP.NET Core MVC
+- ASP.NET MVC
 - ASP.NET Identity
 - MediatR
 - FluentValidation
